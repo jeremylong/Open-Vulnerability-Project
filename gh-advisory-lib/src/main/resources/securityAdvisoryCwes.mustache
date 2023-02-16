@@ -1,0 +1,25 @@
+{
+  rateLimit {
+    limit
+    cost
+    remaining
+    resetAt
+  }
+  securityAdvisory(ghsaId: "{{ghsaId}}") {
+      databaseId
+      cwes(first: 50{{#after}}, after: "{{after}}" {{/after}}) {
+        edges {
+          node {
+            cweId
+            name
+            description
+          }
+        }
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
