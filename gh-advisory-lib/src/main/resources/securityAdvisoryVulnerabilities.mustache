@@ -1,0 +1,34 @@
+{
+  rateLimit {
+    limit
+    cost
+    remaining
+    resetAt
+  }
+  securityAdvisory(ghsaId: "{{ghsaId}}") {
+      databaseId
+      vulnerabilities(first: 100
+       {{#after}}after: "{{after}}" {{/after}}
+       orderBy: {field: UPDATED_AT, direction: ASC}) {
+        edges {
+          node {
+            severity
+            updatedAt
+            firstPatchedVersion {
+              identifier
+            }
+            vulnerableVersionRange
+            package {
+              ecosystem
+              name
+            }
+          }
+        }
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
